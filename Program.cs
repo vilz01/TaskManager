@@ -8,7 +8,7 @@ namespace SqlHarj
     {
         static void Main(string[] args)
         {                          //path Data Source tulee vaihtaa omalle koneelle oikeaksi
-            string? choise, query, path = @"Data Source=xxxx\SQLEXPRESS;Initial Catalog=Taskma;Integrated Security=true;encrypt=false;";
+            string? choise, query, path = @"Data Source=xxx\SQLEXPRESS;Initial Catalog=Taskma;Integrated Security=true;encrypt=false;";
             int? actId;
             do
             {
@@ -130,13 +130,13 @@ namespace SqlHarj
             {
                 foreach(string x in tags)
                 {
-                    addition = "USE [Taskma] INSERT INTO [dbo].[Tag]([Name]) VALUES('"+x+"')";
+                    addition = "INSERT INTO [dbo].[Tag]([Name]) VALUES('"+x+"')";
                     SqlInsert(path, addition);
                 }
             }
             foreach (string x in actTags)
             {
-                addition = "USE [Taskma] INSERT INTO [dbo].[TagAct]([TagId],[ActId]) VALUES('" + GetTagId(path, x) + "','" + actId + "')";
+                addition = "INSERT INTO [dbo].[TagAct]([TagId],[ActId]) VALUES('" + GetTagId(path, x) + "','" + actId + "')";
                 SqlInsert(path, addition);
             }
         }
@@ -229,7 +229,7 @@ namespace SqlHarj
             name = Console.ReadLine();
             Console.Write("Give task content: ");
             cont = Console.ReadLine();
-            addition = "USE [Taskma] INSERT INTO [dbo].[Task] ([Name],[Cont],[StartD],[EndD],[Status],[ActivityId])" +
+            addition = "INSERT INTO [dbo].[Task] ([Name],[Cont],[StartD],[EndD],[Status],[ActivityId])" +
                 " VALUES('" + name + "','" + cont + "','" + startD + "','" + endD + "','" + status + "','" + actId + "')";
             SqlInsert(path, addition);
             Console.WriteLine("** Task added **");
@@ -252,7 +252,7 @@ namespace SqlHarj
                 Console.Write("Try again, must choose 1, 2, 3 or 4\nChoise: ");
                 choise = Console.ReadLine();
             }
-            addition = "USE [Taskma] INSERT INTO [dbo].[Activity] ([Title],[Description],[Url],[StartD],[EndD],[Status],[ActivityType])" +
+            addition = "INSERT INTO [dbo].[Activity] ([Title],[Description],[Url],[StartD],[EndD],[Status],[ActivityType])" +
                 " VALUES('" + title + "','" + desc + "','" + url + "','" + startD + "','" + endD + "','" + status + "','" + actType + "')";
             SqlInsert(path, addition);
             Console.WriteLine("** Activity added **\nDo you want to add tasks to your activity?\n 1. Yes, 2.No\nInput: ");
